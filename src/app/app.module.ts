@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { FormularioComponent } from './components/formulario/formulario.component';
+import { TabelaComponent } from './components/tabela/tabela.component';
 
 
 
@@ -20,6 +21,7 @@ import { FormularioComponent } from './components/formulario/formulario.componen
     AppComponent,
     BarraComponent,
     FormularioComponent,
+    TabelaComponent,
   ],
   imports: [
     BrowserModule,
