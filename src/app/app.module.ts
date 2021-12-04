@@ -6,15 +6,27 @@ import { AppComponent } from './app.component';
 import { BarraComponent } from './components/barra/barra.component';
 
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { FormularioComponent } from './components/formulario/formulario.component';
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     BarraComponent,
+    FormularioComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
