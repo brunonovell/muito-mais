@@ -1,20 +1,17 @@
 .stilo-formulario {
   display: flex;
   padding: 5px;
-  margin-top: 12px;
   justify-content: center;
-}
-
-.stilo-formulario .form-grup{
-  justify-content: center;
-}
-
-.stilo-formulario .stylle-input {
-  max-width: 300px;
+  margin-top: 25px;
 }
 
 .stilo-formulario .style-button {
   background-color: #3f51b5;
   color: #ffff;
-  max-width: 200px;
+  min-width: 200px;
+}
+
+.stilo-formulario .container-button{
+  display: flex;
+  justify-content: center;
 }
