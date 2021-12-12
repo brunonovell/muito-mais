@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-tabela',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabelaComponent implements OnInit {
 
+  @Input() dados: Array<any> = [];
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
-  }
 }

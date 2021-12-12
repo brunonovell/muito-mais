@@ -17,8 +17,6 @@ import { FormsModule } from '@angular/forms';
 
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,9 +32,9 @@ import { FormsModule } from '@angular/forms';
     MatListModule,
     HttpClientModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [TabelaComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

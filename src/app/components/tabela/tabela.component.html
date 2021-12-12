@@ -13,16 +13,16 @@
           <th scope="col">U.M</th>
         </tr>
       </thead>
-      <tbody>
-        <tr scope="row">
-          <th id="sku"></th>
-          <td id="descricao"></td>
-          <td id="ean"></td>
-          <td id="precoCusto"></td>
-          <td id="precoVenda"></td>
-          <td id="estoqueReal"></td>
-          <td id="estoqueFiscal"></td>
-          <td id="unidadeMedida"></td>
+      <tbody >
+        <tr scope="row"  *ngFor="let item of dados" >
+        <th id="sku">{{item.sku}}</th>
+          <td id="descricao">{{item.descricao}}</td>
+          <td id="ean">{{item.ean}}</td>
+          <td id="precoCusto">{{item.pc}}</td>
+          <td id="precoVenda">{{item.pv}}</td>
+          <td id="estoqueReal">{{item.er}}</td>
+          <td id="estoqueFiscal">{{item.ef}}</td>
+          <td id="unidadeMedida">{{item.ums}}</td>
         </tr>
       </tbody>
     </table>

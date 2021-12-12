@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AppComponent } from 'src/app/app.component';
 import { ApiMmService } from 'src/app/services/api-mm.service';
+import { TabelaComponent } from '../tabela/tabela.component';
 
 @Component({
   selector: 'app-formulario',
@@ -15,7 +18,9 @@ export class FormularioComponent implements OnInit {
   VALOR_CAMPO_COMPANY: Number = 0;
 
 
-  constructor(private serviceMuitoMais: ApiMmService) { }
+
+
+  constructor(private serviceMuitoMais: ApiMmService, private appComponent:AppComponent) { }
 
   ngOnInit(): void {
 
@@ -24,16 +29,16 @@ export class FormularioComponent implements OnInit {
   pesquisar(): void {
     if (this.VALOR_CAMPO_PESQUISA.length > 0 || this.VALOR_CAMPO_COMPANY != 0) {
 
-      const retornoDoServico = this.serviceMuitoMais
-        .buscaProdutos(
+      this.serviceMuitoMais
+        .pesquisar(
           this.VALOR_CAMPO_PESQUISA.toUpperCase(),
           this.VALOR_CAMPO_STOCKOPERATOR,
           this.VALOR_CAMPO_OPERATOR,
           this.VALOR_CAMPO_FISCALSITUATION,
           this.VALOR_CAMPO_COMPANY
-        );
-
-      console.log(retornoDoServico);
+        ).subscribe(dados =>{
+          this.appComponent.listaProdutos = dados.list;
+        })
 
     } else {
       alert("Compos Obrigatórios!\n - pesquisa\n - empresa");
