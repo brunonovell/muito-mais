@@ -10,6 +10,8 @@ export class TabelaComponent implements OnInit {
 
   @Input() dados: Array<any> = [];
 
+  listaDados = [];
+
   constructor() { }
 
   ngOnInit(): void { }

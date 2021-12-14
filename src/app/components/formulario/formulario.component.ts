@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { ApiMmService } from 'src/app/services/api-mm.service';
-import { TabelaComponent } from '../tabela/tabela.component';
 
 @Component({
   selector: 'app-formulario',
@@ -17,9 +15,6 @@ export class FormularioComponent implements OnInit {
   VALOR_CAMPO_FISCALSITUATION: String = '';
   VALOR_CAMPO_COMPANY: Number = 0;
 
-
-
-
   constructor(private serviceMuitoMais: ApiMmService, private appComponent:AppComponent) { }
 
   ngOnInit(): void {
@@ -27,7 +22,7 @@ export class FormularioComponent implements OnInit {
   }
 
   pesquisar(): void {
-    if (this.VALOR_CAMPO_PESQUISA.length > 0 || this.VALOR_CAMPO_COMPANY != 0) {
+    if (this.VALOR_CAMPO_PESQUISA.length >= 0  || this.VALOR_CAMPO_COMPANY != 0) {
 
       this.serviceMuitoMais
         .pesquisar(

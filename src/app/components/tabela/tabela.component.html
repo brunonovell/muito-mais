@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="style-tabela ">
-    <table class="table table-sm">
+  <div class="style-tabela">
+    <table class="table table-sm ">
       <thead>
         <tr>
           <th scope="col">SKU</th>
@@ -13,9 +13,9 @@
           <th scope="col">U.M</th>
         </tr>
       </thead>
-      <tbody >
-        <tr scope="row"  *ngFor="let item of dados" >
-        <th id="sku">{{item.sku}}</th>
+      <tbody>
+        <tr scope="row" *ngFor="let item of dados">
+          <th id="sku">{{item.sku}}</th>
           <td id="descricao">{{item.descricao}}</td>
           <td id="ean">{{item.ean}}</td>
           <td id="precoCusto">{{item.pc}}</td>
