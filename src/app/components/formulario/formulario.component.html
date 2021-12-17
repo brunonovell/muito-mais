@@ -1,11 +1,11 @@
 <div class="row stilo-formulario">
   <form class="form-grup row">
     <div class="stylle-input col-md-2">
-      <input class="form-control " type="text" placeholder="Pesquisa"  name="pesquisa"
+      <input class="form-control form-control-sm " type="text" placeholder="Pesquisa"  name="pesquisa"
         [(ngModel)]="VALOR_CAMPO_PESQUISA">
     </div>
     <div class="form-group stylle-input col-md-2 ">
-      <select id="txt-operador" class="form-control" name="stockOperation" [(ngModel)]="VALOR_CAMPO_STOCKOPERATOR">
+      <select id="txt-operador" class="form-control form-control-sm" name="stockOperation" [(ngModel)]="VALOR_CAMPO_STOCKOPERATOR">
         <option value="" disabled selected>Operador de estoque...</option>
         <option value="TODOS" selected>TODOS</option>
         <option value="MENOR">MENOR</option>
@@ -14,11 +14,11 @@
       </select>
     </div>
     <div class="stylle-input col-md-2">
-      <input id="txt-valor" class="form-control " type="number" placeholder="0" name="operator"
+      <input id="txt-valor" class="form-control form-control-sm" type="number" placeholder="0" name="operator"
         [(ngModel)]="VALOR_CAMPO_OPERATOR">
     </div>
     <div class="form-group col-md-2">
-      <select aria-placeholder="Situação Fiscal" class="form-control" name="fiscalSituation"
+      <select aria-placeholder="Situação Fiscal" class="form-control form-control-sm" name="fiscalSituation"
         [(ngModel)]="VALOR_CAMPO_FISCALSITUATION">
         <option value="" disabled selected>Situação fiscal...</option>
         <option value="TODOS">TODOS</option>
@@ -27,14 +27,14 @@
       </select>
     </div>
     <div class="form-group stylle-input col-md-2">
-      <select id="inputState" class="form-control" name="company" [(ngModel)]="VALOR_CAMPO_COMPANY">
+      <select id="inputState" class="form-control form-control-sm" name="company" [(ngModel)]="VALOR_CAMPO_COMPANY">
         <option value="0" disabled selected>Empresa...</option>
         <option value="8">MUITO MAIS (MÃE BELA)</option>
         <option value="28">MUITO MAIS (CENTRO)</option>
       </select>
     </div>
     <div class=" container-button col-md-2">
-      <button class="btn  style-button" (click)="pesquisar()">BUSCAR</button>
+      <button class="btn  style-button btn-sm" (click)="pesquisar()">BUSCAR</button>
     </div>
   </form>
 </div>

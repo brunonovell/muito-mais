@@ -1,5 +1,31 @@
-.container-totalizador{
-  display: flexbox;
-  background-color: #b7bfec;
-  color: aliceblue;
+.container-totalizador {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.card-totalizador {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #3f51b5;
+  margin: 10px;
+}
+
+.card-totalizador label {
+  color: brown;
+  font-size: 19px;
+}
+
+.card-totalizador .card-valor {
+  color: #3f51b5;
+}
+
+.style-button {
+  background-color: #3f51b5;
 }
