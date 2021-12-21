@@ -1,13 +1,15 @@
-<div class="row" >
-  <div class="container-totalizador" >
-    <div class="card-totalizador col-md-3" >
-      <label>Estoque Real</label>
-      <div class="card-valor"> <span>R$:</span> {{200000}}</div>
+<div class="row">
+  <div class="container-totalizador">
+    <div class="card-totalizador estoque-real col-md-3">
+      <label style="color: black">ESTOQUE REAL</label>
+      <label style="font-size: 13px">QTD DE CADASTROS: <a class="card-valor">{{300}}</a> </label>
+      <label style="font-size: 14px; color: darkgreen">VALOR CUSTO: <a class="card-valor">R${{300}}</a> </label>
+      <label style="font-size: 14px; color: brown">VALOR VENDA: <a class="card-valor">R${{300}}</a> </label>
+      <label style="">VALOR (VENDA - CUSTO)<a class="card-valor">R${{300}}</a> </label>
       <button type="button" class="style-button  btn btn-primary">ZERAR ESTOQUE NEGATIVO</button>
     </div>
-    <div class="card-totalizador col-md-3" >
-      <label>Estoque Fiscal</label>
-      <div class="card-valor" > <span>R$:</span> {{20000}}</div>
+    <div class="card-totalizador estoque-fiscal col-md-3">
+      <label>TOTAL EM ESTOQUE (FISCAL) <a class="card-valor">R${{200000}}</a> </label>
       <button type="button" class="style-button  btn btn-primary">EXECUTAR MANUTENÇÃO</button>
     </div>
   </div>
