@@ -1,16 +1,12 @@
-<div class="row">
-  <div class="container-totalizador">
-    <div class="card-totalizador estoque-real col-md-3">
-      <label style="color: black">ESTOQUE REAL</label>
-      <label style="font-size: 13px">QTD DE CADASTROS: <a class="card-valor">{{300}}</a> </label>
-      <label style="font-size: 14px; color: darkgreen">VALOR CUSTO: <a class="card-valor">R${{300}}</a> </label>
-      <label style="font-size: 14px; color: brown">VALOR VENDA: <a class="card-valor">R${{300}}</a> </label>
-      <label style="">VALOR (VENDA - CUSTO)<a class="card-valor">R${{300}}</a> </label>
-      <button type="button" class="style-button  btn btn-primary">ZERAR ESTOQUE NEGATIVO</button>
-    </div>
-    <div class="card-totalizador estoque-fiscal col-md-3">
-      <label>TOTAL EM ESTOQUE (FISCAL) <a class="card-valor">R${{200000}}</a> </label>
-      <button type="button" class="style-button  btn btn-primary">EXECUTAR MANUTENÇÃO</button>
-    </div>
+<div class="container-totalizador row">
+  <div class="container-estoque-real col-md-3 ">
+    <label style="font-weight: bold" >Estoque Real</label>
+    <div><a>Qtd Cadastros: </a> <a>{{QTD_DE_CADASTROS}}</a></div>
+    <div><a>Custo </a> <a>(R${{CUSTO}})</a> <a> Venda </a><a >(R${{VENDA}})</a></div>
+    <div><a>(Venda - Custo) </a><a>R$ {{CUSTO_VENDA}}</a></div>
+  </div>
+  <div class="container-estoque-fiscal col-md-3 ">
+    <label style="font-weight: bold">Estoque Fiscal</label>
+    <div><a>Custo: </a><a>R$ {{TOTAL_EM_ESTOQUE_REAL}} </a></div>
   </div>
 </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AppComponent} from "../../app.component";
 
 @Component({
   selector: 'app-totalizador',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TotalizadorComponent implements OnInit {
 
-  constructor() { }
+  QTD_DE_CADASTROS: Number = 0;
+  CUSTO: Number = 0;
+  VENDA: Number = 0;
+  CUSTO_VENDA: Number = 0;
+  TOTAL_EM_ESTOQUE_REAL:Number = 0;
+
+  constructor(private appComponet:AppComponent) {
+  }
 
   ngOnInit(): void {
   }
 
+  //TODO: Terminar metato para preencher o totalizador
+  preencherTotalizadores(){
+
+  }
 }
