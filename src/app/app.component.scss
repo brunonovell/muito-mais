@@ -6,3 +6,106 @@ body {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
+.stilo-barra{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #3F51B5;
+}
+
+.stilo-barra .logo{
+  color:#FFFF;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+.stilo-formulario {
+  display: flex;
+  //padding: 5px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.stilo-formulario .style-button {
+  background-color: #3f51b5;
+  color: #ffff;
+  min-width: 70%;
+}
+
+.stilo-formulario .container-button{
+  display: flex;
+  justify-content: center;
+}
+
+.style-tabela {
+  margin-top: 15px;
+  overflow: auto;
+  max-height: 500px;
+}
+
+.style-cabecalho {
+  position: sticky;
+  top: 0;
+  background-color: #3f51b5;
+  color: aliceblue;
+}
+
+.container-totalizador{
+  border: solid 1px;
+  background-color: #aaaaaa;
+  border-color: #3f51b5;
+  border-radius: 3px;
+  margin: 0px;
+  padding: -5px;
+}
+.container-estoque-real{
+  border: solid 2px;
+  border-color: darkgreen;
+  border-radius: 4px;
+  margin: 20px;
+  background-color: darkgreen;
+  color: aliceblue;
+}
+
+.container-estoque-real a{
+  font-size: 14px;
+
+}
+
+.container-estoque-fiscal{
+  border: solid 2px;
+  border-color: brown;
+  border-radius: 4px;
+  margin: 20px;
+  background-color: brown;
+  color: aliceblue;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+tbody tr td {
+  font-size: 12px;
+}
+
+thead tr th {
+  font-size: 12px;
+}
+
+.cmd-comando {
+  width: 100% !important;
+  float: right;
+  margin-right: -40px !important;
+
+}
+
+.cmd-executar-limpesa {
+  margin-top: 20px !important;
+}
+
+.cmd-comando {
+  margin-top: 10px;
+}

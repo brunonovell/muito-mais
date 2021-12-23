@@ -1,6 +1,112 @@
 <div class="container-fluid">
-  <app-barra></app-barra>
-  <app-formulario></app-formulario>
-  <app-tabela [dados]="listaProdutos" ></app-tabela>
+  <div class="row">
+    <div class="stilo-barra">
+      <a class="logo">MANUTENÇÃO DE EMÊRGENCIA</a>
+    </div>
+  </div>
+
+  <div class="row stilo-formulario">
+    <div class="stylle-input col-md-2">
+      <input class="form-control form-control-sm " type="text" placeholder="Pesquisa" name="pesquisa"
+        [(ngModel)]="VALOR_CAMPO_PESQUISA">
+    </div>
+
+    <div class="col-md-2 ">
+      <select id="txt-operador" class="form-control form-control-sm" name="stockOperation"
+        [(ngModel)]="VALOR_CAMPO_STOCKOPERATOR">
+        <option value="" disabled selected>Operador de estoque...</option>
+        <option value="TODOS" selected>TODOS</option>
+        <option value="MENOR">MENOR</option>
+        <option value="MAIOR">MAIOR</option>
+        <option value="IGUAL">IGUAL</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <input id="txt-valor" class="form-control form-control-sm" type="number" placeholder="0" name="operator"
+        [(ngModel)]="VALOR_CAMPO_OPERATOR">
+    </div>
+
+    <div class="col-md-2">
+      <select aria-placeholder="Situação Fiscal" class="form-control form-control-sm" name="fiscalSituation"
+        [(ngModel)]="VALOR_CAMPO_FISCALSITUATION">
+        <option value="" disabled selected>Situação fiscal...</option>
+        <option value="TODOS">TODOS</option>
+        <option value="SUPERAVIT">SUPERAVIT</option>
+        <option value="DEFIT">DEFIT</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <select id="inputState" class="form-control form-control-sm" name="company" [(ngModel)]="VALOR_CAMPO_COMPANY">
+        <option value="0" disabled selected>Empresa...</option>
+        <option value="8">MUITO MAIS (MÃE BELA)</option>
+        <option value="28">MUITO MAIS (CENTRO)</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <button class="btn  style-button btn-sm" style="float: right;" (click)="pesquisar()">BUSCAR</button>
+    </div>
+  </div>
+
+  <div class="style-tabela">
+    <table class="table table-striped table-sm">
+      <thead class="style-cabecalho">
+        <tr>
+          <th scope="col">SKU</th>
+          <th scope="col">DESCRIÇÃO</th>
+          <th scope="col">EAN</th>
+          <th scope="col">P.C</th>
+          <th scope="col">P.V</th>
+          <th scope="col">E.R</th>
+          <th scope="col">E.F</th>
+          <th scope="col">U.M</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row" *ngFor="let item of listaProdutos">
+          <td>{{item.sku}}</td>
+          <td>{{item.descricao}}</td>
+          <td>{{item.ean}}</td>
+          <td>{{item.pc.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}}</td>
+          <td>{{item.pv.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}}</td>
+          <td>{{item.er}}</td>
+          <td>{{item.ef}}</td>
+          <td>{{item.ums}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row" style="margin-left: -20px;">
+
+    <div class="container-estoque-real col-md-3 ">
+      <label style="font-weight: bold">Estoque Real</label>
+
+      <div>Qtd Cadastros:
+        <strong>{{ this.qtdeProdutos }}</strong>
+      </div>
+
+      <div>Custo <strong>{{ this.valorEmCusto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }}</strong>
+        Venda <strong> {{ this.valorEmVenda.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }} </strong>
+      </div>
+      <div>(Venda - Custo) <strong> {{ this.valorLucroBruto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+          }} </strong> </div>
+    </div>
+
+    <div class="container-estoque-real col-md-3 ">
+      <label style="font-weight: bold">Estoque Fiscal</label>
+      <div>Custo: <strong> {{ this.valorEmCustoFiscal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }}
+        </strong></div>
+    </div>
+
+    <div class="col-md-3 "></div>
+    <div class="col-md-2 ">
+      <button class="btn btn-dark btn-block cmd-comando cmd-executar-limpesa" (click)="zerarEstoqueNegativo()">Executar Limpesa</button> <br>
+      <button class="btn btn-dark btn-block cmd-comando cmd-zerar-estoque" (click)="executarLimpeza()">Zerar estoque negativo</button>
+    </div>
+  </div>
+
   <router-outlet></router-outlet>
 </div>
