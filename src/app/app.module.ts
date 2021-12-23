@@ -14,7 +14,6 @@ import { TabelaComponent } from './components/tabela/tabela.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button'
 import { FormsModule } from '@angular/forms';
-import { TotalizadorComponent } from './components/totalizador/totalizador.component';
 
 
 
@@ -23,8 +22,7 @@ import { TotalizadorComponent } from './components/totalizador/totalizador.compo
     AppComponent,
     BarraComponent,
     FormularioComponent,
-    TabelaComponent,
-    TotalizadorComponent,
+    TabelaComponent
   ],
   imports: [
     BrowserModule,

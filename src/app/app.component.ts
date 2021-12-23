@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +10,9 @@ export class AppComponent {
   listaProdutos = []
 
   title = 'mm-manutencao';
+
+  //TODO: Terminar regra de negocio do totalizador
+  preencherTotalizadores(): void {
+    this.listaProdutos.map(item => console.log(item))
+  }
 }
