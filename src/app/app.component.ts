@@ -1,5 +1,5 @@
-import { ApiMmService } from './services/api-mm.service';
-import { Component, OnInit, Input } from '@angular/core';
+import {ApiMmService} from './services/api-mm.service';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
 
   listaProdutos: Array<any> = []
 
-  ///////////Variaveis para o totalizador/////////////
   qtdeProdutos: number = 0;
   valorEmCusto: number = 0;
   valorEmCustoFiscal: number = 0;
@@ -33,8 +32,8 @@ export class AppComponent implements OnInit {
     if (this.VALOR_CAMPO_PESQUISA.length !== 0 && this.VALOR_CAMPO_COMPANY !== 0) {
 
       this.serviceMuitoMais.pesquisar(this.VALOR_CAMPO_PESQUISA.toUpperCase(), this.VALOR_CAMPO_STOCKOPERATOR, this.VALOR_CAMPO_OPERATOR, this.VALOR_CAMPO_FISCALSITUATION, this.VALOR_CAMPO_COMPANY).subscribe(dados => {
-          this.listaProdutos = dados.list;
-          this.giraTotalizador();
+        this.listaProdutos = dados.list;
+        this.giraTotalizador();
       });
     } else {
       alert("Compos Obrigatórios!\n - pesquisa\n - empresa");
@@ -43,19 +42,18 @@ export class AppComponent implements OnInit {
 
   giraTotalizador(): void {
     this.limpaTotalizador();
-    console.log(this.listaProdutos);
 
     this.qtdeProdutos = this.listaProdutos.length;
 
-    for(var i = 0; i < this.listaProdutos.length; i++){
+    for (var i = 0; i < this.listaProdutos.length; i++) {
       //Contabilidade de estoques real
-      if(this.listaProdutos[i].er >= 0) {
+      if (this.listaProdutos[i].er >= 0) {
         this.valorEmCusto = this.valorEmCusto + (this.listaProdutos[i].er * this.listaProdutos[i].pc);
         this.valorEmVenda = this.valorEmVenda + (this.listaProdutos[i].er * this.listaProdutos[i].pv);
       }
 
       //Contabilidade de estoques fiscal
-      if(this.listaProdutos[i].ef >= 0) {
+      if (this.listaProdutos[i].ef >= 0) {
         this.valorEmCustoFiscal = this.valorEmCustoFiscal + (this.listaProdutos[i].ef * this.listaProdutos[i].pc);
       }
     }
@@ -72,10 +70,26 @@ export class AppComponent implements OnInit {
   }
 
   zerarEstoqueNegativo(): void {
+      if(this.VALOR_CAMPO_COMPANY !== 0){
+        const retornoDoService = this.serviceMuitoMais.manutencaoes("deletasn",this.VALOR_CAMPO_COMPANY);
 
+        retornoDoService
+          .subscribe(retorno => alert(retorno.message));
+
+      }else{
+        alert("Não existe dados para a operação!")
+      }
   }
 
   executarLimpeza(): void {
+    if(this.VALOR_CAMPO_COMPANY !== 0){
+      const retornoDoService = this.serviceMuitoMais.manutencaoes("zerarestoquenegativo",this.VALOR_CAMPO_COMPANY);
 
+      retornoDoService
+        .subscribe(retorno => console.log(retorno));
+
+    }else{
+      alert("Não existe dados para a operação!")
+    }
   }
 }

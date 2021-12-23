@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 
 @Injectable({
@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 export class ApiMmService {
 
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
 
   pesquisar(pesquisa: String, stockoperator: String, operator: Number, fiscalsituation: String, company: Number): Observable<any> {
@@ -28,11 +28,32 @@ export class ApiMmService {
     return this.http.get<any[]>(urlPreenchida, httpOptions);
   }
 
+  manutencaoes(tipoManutencao: String, idEmpresa: Number): Observable<any> {
+    const urlPreenchida: string = this.urlManutencao(tipoManutencao);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.token()
+      })
+    }
+
+    const body = {
+      'idempresa': idEmpresa
+    }
+
+    return this.http.post<any>(urlPreenchida, body, httpOptions);
+  }
+
 
   private urlConsulta(pesquisa: String, stockoperator: String, operator: Number, fiscalsituation: String, company: Number): string {
     return `http://138.219.98.204:8081/api/api/routines/centralstock/v1/search?search=${pesquisa}&stockoperator=${stockoperator}&operator=${operator}&fiscalsituation=${fiscalsituation}&company=${company}`;
   }
 
+
+  private urlManutencao(tipoManutencao: String): string {
+    return `http://138.219.98.204:8081/api/api/routines/centralstock/v1/${tipoManutencao}`;
+  }
 
 
   private token(): string {
