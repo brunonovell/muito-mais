@@ -30,6 +30,7 @@ export class ApiMmService {
 
   manutencaoes(tipoManutencao: String, idEmpresa: Number): Observable<any> {
     const urlPreenchida: string = this.urlManutencao(tipoManutencao);
+    console.log(urlPreenchida);
 
     const httpOptions = {
       headers: new HttpHeaders({
