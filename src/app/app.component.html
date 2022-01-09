@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="verificaUsuarioLogado()">
   <div class="row">
     <div class="stilo-barra">
       <a class="logo">MANUTENÇÃO DE EMÊRGENCIA</a>
@@ -103,10 +103,33 @@
 
     <div class="col-md-3 "></div>
     <div class="col-md-2 ">
-      <button class="btn btn-dark btn-block cmd-comando cmd-executar-limpesa" (click)="zerarEstoqueNegativo()">Executar Limpesa</button> <br>
-      <button class="btn btn-dark btn-block cmd-comando cmd-zerar-estoque" (click)="executarLimpeza()">Zerar estoque negativo</button>
+      <button class="btn btn-dark btn-block cmd-comando cmd-executar-limpesa" (click)="removeDadosNaoFiscal()">Executar Limpesa</button> <br>
+      <button class="btn btn-dark btn-block cmd-comando cmd-zerar-estoque" (click)="zerarEstoqueNegativo()">Zerar estoque negativo</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="!verificaUsuarioLogado()">
+  <div class="row">
+    <div class="stilo-barra">
+      <a class="logo">MANUTENÇÃO DE EMÊRGENCIA</a>
     </div>
   </div>
 
-  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-md-4 "></div>
+    <div class="col-md-4">
+      <h1 style="font-size: 17px; margin-top: 20px; text-align: center;">Acesso restrito</h1>
+
+      <label>E-mail</label>
+      <input class="form-control form-control-sm " type="email" placeholder="Digite o seu e-mail" name="pesquisa" [(ngModel)]="emailLogin">
+
+      <label style="margin-top: 20px;">Senha</label>
+      <input class="form-control form-control-sm " type="password" placeholder="Digite sua senha" name="pesquisa" [(ngModel)]="senhaLogin">
+
+      <button class="btn btn-dark btn-block" style="width: 100%; margin-top: 10px;" (click)="realizaLogin()">Entrar</button>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
 </div>

@@ -7,11 +7,14 @@ import {Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  emailLogin: string = '';
+  senhaLogin: string = '';
+
   VALOR_CAMPO_PESQUISA: string = '';
   VALOR_CAMPO_STOCKOPERATOR: string = '';
-  VALOR_CAMPO_OPERATOR: Number = 0;
+  VALOR_CAMPO_OPERATOR: number = 0;
   VALOR_CAMPO_FISCALSITUATION: string = '';
-  VALOR_CAMPO_COMPANY: Number = 0;
+  VALOR_CAMPO_COMPANY: number = 0;
 
   listaProdutos: Array<any> = []
 
@@ -21,7 +24,7 @@ export class AppComponent implements OnInit {
   valorEmVenda: number = 0;
   valorLucroBruto: number = 0;
 
-  constructor(private serviceMuitoMais: ApiMmService) {
+  constructor(private service: ApiMmService) {
   }
 
   ngOnInit(): void {
@@ -29,14 +32,13 @@ export class AppComponent implements OnInit {
   }
 
   pesquisar(): void {
-    if (this.VALOR_CAMPO_PESQUISA.length !== 0 && this.VALOR_CAMPO_COMPANY !== 0) {
-
-      this.serviceMuitoMais.pesquisar(this.VALOR_CAMPO_PESQUISA.toUpperCase(), this.VALOR_CAMPO_STOCKOPERATOR, this.VALOR_CAMPO_OPERATOR, this.VALOR_CAMPO_FISCALSITUATION, this.VALOR_CAMPO_COMPANY).subscribe(dados => {
+    if (this.VALOR_CAMPO_COMPANY !== 0) {
+      this.service.pesquisar(this.VALOR_CAMPO_PESQUISA.toUpperCase(), this.VALOR_CAMPO_STOCKOPERATOR, this.VALOR_CAMPO_OPERATOR, this.VALOR_CAMPO_FISCALSITUATION, this.VALOR_CAMPO_COMPANY).subscribe(dados => {
         this.listaProdutos = dados.list;
         this.giraTotalizador();
       });
     } else {
-      alert("Compos Obrigatórios!\n - pesquisa\n - empresa");
+      alert("Compos Obrigatórios!\n - empresa");
     }
   }
 
@@ -44,7 +46,6 @@ export class AppComponent implements OnInit {
     this.limpaTotalizador();
 
     this.qtdeProdutos = this.listaProdutos.length;
-
     for (var i = 0; i < this.listaProdutos.length; i++) {
       //Contabilidade de estoques real
       if (this.listaProdutos[i].er >= 0) {
@@ -61,6 +62,28 @@ export class AppComponent implements OnInit {
     this.valorLucroBruto = (this.valorEmVenda - this.valorEmCusto);
   }
 
+  removeDadosNaoFiscal(): void {
+      if(this.VALOR_CAMPO_COMPANY !== 0){
+        this.service.removeDadosNaoFiscal(this.VALOR_CAMPO_COMPANY).subscribe((retorno) => {
+          alert("Operação realizada com sucesso");
+          this.pesquisar();
+        });
+      }else{
+        alert("Ops! Selecione a empresa.")
+      }
+  }
+
+  zerarEstoqueNegativo(): void {
+    if(this.VALOR_CAMPO_COMPANY !== 0){
+      this.service.zerarEstoqueNegativo(this.VALOR_CAMPO_COMPANY).subscribe((retorno) => {
+        alert("Operação realizada com sucesso");
+        this.pesquisar();
+      });
+    }else{
+      alert("Ops! Selecione a empresa.")
+    }
+  }
+
   limpaTotalizador() {
     this.qtdeProdutos = 0;
     this.valorEmCusto = 0;
@@ -69,27 +92,23 @@ export class AppComponent implements OnInit {
     this.valorEmCustoFiscal = 0;
   }
 
-  zerarEstoqueNegativo(): void {
-      if(this.VALOR_CAMPO_COMPANY !== 0){
-        const retornoDoService = this.serviceMuitoMais.manutencaoes("deletasn",this.VALOR_CAMPO_COMPANY);
-
-        retornoDoService
-          .subscribe(retorno => alert(retorno.message));
-
-      }else{
-        alert("Não existe dados para a operação!")
-      }
+  verificaUsuarioLogado(): boolean {
+    let token = localStorage.getItem('token');
+    if(token !== undefined && token !== null && token !== 'offline') {
+      return true;
+    }else {
+      return false;
+    }
   }
 
-  executarLimpeza(): void {
-    if(this.VALOR_CAMPO_COMPANY !== 0){
-      const retornoDoService = this.serviceMuitoMais.manutencaoes("zerarestoquenegativo",this.VALOR_CAMPO_COMPANY);
+  realizaLogin() {
+    this.service.realizaLogin(this.emailLogin, this.senhaLogin).subscribe((resp) => {
+      console.log(resp.body.token);
+      localStorage.setItem('token', resp.body.token);
+    });
+  }
 
-      retornoDoService
-        .subscribe(retorno => console.log(retorno));
-
-    }else{
-      alert("Não existe dados para a operação!")
-    }
+  realizaLogoff() {
+    localStorage.setItem('token', 'offline');
   }
 }
