@@ -9,7 +9,8 @@ export class ApiMmService {
   constructor(private http: HttpClient) {}
 
   private urlGateway(): string {
-    return `http://138.219.98.204:8081/api/`;
+    //return `http://138.219.98.204:8081/api/`;
+    return `http://10.10.0.199:8081/api/`;
   }
 
   private token(): any {
